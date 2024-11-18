@@ -9,7 +9,7 @@ import kotlin.reflect.KClass
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented
-@Constraint(validatedBy = [])
+@Constraint(validatedBy = [ValidEnumValidator::class])
 annotation class ValidEnum (
         val message: String = "Invalid enum value",
         val groups: Array<KClass<*>> = [],

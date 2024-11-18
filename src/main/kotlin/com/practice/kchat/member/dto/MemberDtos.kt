@@ -3,6 +3,7 @@ package com.practice.kchat.member.dto
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.practice.kchat.common.annotation.ValidEnum
 import com.practice.kchat.common.status.Gender
+import com.practice.kchat.member.entity.Member
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
@@ -21,7 +22,6 @@ data class MemberDtoRequest(
                 regexp="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%^&*])[a-zA-Z0-9!@#\$%^&*]{8,20}\$",
                 message="영문, 숫자, 특수문자를 포함한 8~20자리로 입력해주세요."
         )
-
         @JsonProperty("password")
         private val _password: String?,
 
@@ -62,4 +62,7 @@ data class MemberDtoRequest(
         get() = _email!!
         private fun String.toLocalDate(): LocalDate =
                 LocalDate.parse(this, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+
+        fun toEntity(): Member =
+                Member(id, loginId, password, name, birthDate, gender, email)
 }
