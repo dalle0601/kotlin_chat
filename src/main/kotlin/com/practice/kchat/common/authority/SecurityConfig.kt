@@ -31,6 +31,7 @@ class SecurityConfig(
                         JwtAuthenticationFilter(jwtTokenProvider),
                         UsernamePasswordAuthenticationFilter::class.java
                 )
+
         return http.build()
     }
 
